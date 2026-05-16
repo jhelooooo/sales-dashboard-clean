@@ -7,7 +7,7 @@ function renderDashboard(){
 }
 
 function renderKpis(){
-  const rows = dashboardState.salesRows;
+  const rows = getFilteredSalesRows();
 
   const totalSales = rows.reduce((sum, row) => {
     return sum + cleanNumber(row['CLIENT TOTAL AMOUNT']);
@@ -25,14 +25,10 @@ function renderKpis(){
   document.getElementById('buyingDealerCount').textContent = uniqueDealers.size;
 }
 
-function renderTargetBalance(){
-  const tbody = document.getElementById('targetBalanceTable');
-
-  if(!tbody)return;
-
+function buildSalesByBrand(rows){
   const salesByBrand = {};
 
-  dashboardState.salesRows.forEach(row => {
+  rows.forEach(row => {
     const brand = row.BRAND || 'NO BRAND';
 
     if(!salesByBrand[brand]){
@@ -41,6 +37,17 @@ function renderTargetBalance(){
 
     salesByBrand[brand] += cleanNumber(row['CLIENT TOTAL AMOUNT']);
   });
+
+  return salesByBrand;
+}
+
+function renderTargetBalance(){
+  const tbody = document.getElementById('targetBalanceTable');
+
+  if(!tbody)return;
+
+  const rows = getFilteredSalesRows();
+  const salesByBrand = buildSalesByBrand(rows);
 
   tbody.innerHTML = dashboardState.targetRows.map(target => {
     const actual = salesByBrand[target.brand] || 0;
@@ -67,17 +74,8 @@ function renderActualTargetChart(){
 
   if(!canvas)return;
 
-  const salesByBrand = {};
-
-  dashboardState.salesRows.forEach(row => {
-    const brand = row.BRAND || 'NO BRAND';
-
-    if(!salesByBrand[brand]){
-      salesByBrand[brand] = 0;
-    }
-
-    salesByBrand[brand] += cleanNumber(row['CLIENT TOTAL AMOUNT']);
-  });
+  const rows = getFilteredSalesRows();
+  const salesByBrand = buildSalesByBrand(rows);
 
   const labels = [];
   const targetData = [];
