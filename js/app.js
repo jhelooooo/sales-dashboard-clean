@@ -40,14 +40,17 @@ function closeSidebar(){
 
 function hideLoader(){
   const loader=document.getElementById('loading');
+
   if(loader){
     loader.style.display='none';
   }
 }
 
-window.addEventListener('load',()=>{
+window.addEventListener('load',async()=>{
   initTabs();
   initMobileSidebar();
 
-  setTimeout(hideLoader,700);
+  await loadDashboardData();
+
+  setTimeout(hideLoader,600);
 });
