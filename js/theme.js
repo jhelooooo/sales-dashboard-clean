@@ -7,9 +7,18 @@ function applyTheme(theme){
   }
 }
 
+function refreshThemeCharts(){
+  setTimeout(()=>{
+    if(typeof renderActualTargetChart === 'function'){
+      renderActualTargetChart();
+    }
+  },80);
+}
+
 function initTheme(){
   const savedTheme=localStorage.getItem('dashboardTheme') || 'dark';
   applyTheme(savedTheme);
+  refreshThemeCharts();
 
   const toggle=document.getElementById('themeToggle');
   if(!toggle)return;
@@ -18,6 +27,7 @@ function initTheme(){
     const nextTheme=document.body.classList.contains('light-theme') ? 'dark' : 'light';
     localStorage.setItem('dashboardTheme',nextTheme);
     applyTheme(nextTheme);
+    refreshThemeCharts();
   });
 }
 
