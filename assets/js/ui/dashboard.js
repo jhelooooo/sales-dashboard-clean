@@ -66,6 +66,26 @@ function renderSidebar(){
         <small>Agent: ${agent}</small>
       </div>
 
+      <div class="sidebar-filters">
+
+        <select id="yearFilter">
+
+          <option value="ALL">
+            All Years
+          </option>
+
+        </select>
+
+        <select id="monthFilter">
+
+          <option value="ALL">
+            All Months
+          </option>
+
+        </select>
+
+      </div>
+
       <nav class="sidebar-nav">
         ${items.map(item => `
           <button class="nav-btn ${activePage === item.id ? 'active' : ''}" data-page="${item.id}">
