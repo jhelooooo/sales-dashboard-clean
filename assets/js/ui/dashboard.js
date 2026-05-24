@@ -210,41 +210,6 @@ function renderSalesPage(){
   `;
 }
 
-function renderTargetsPage(){
-  return `
-    <div class="panel-card">
-      <div class="panel-header">
-        <h2>Brand Targets</h2>
-        <span>Admin / Manager</span>
-      </div>
-      <div class="empty-state">Target management will be connected next.</div>
-    </div>
-  `;
-}
-
-function renderUsersPage(){
-  return `
-    <div class="panel-card">
-      <div class="panel-header">
-        <h2>Users</h2>
-        <span>Admin only</span>
-      </div>
-      <div class="empty-state">User management will be added after policies are finalized.</div>
-    </div>
-  `;
-}
-
-function renderSettingsPage(){
-  return `
-    <div class="panel-card">
-      <div class="panel-header">
-        <h2>Settings</h2>
-        <span>Coming soon</span>
-      </div>
-      <div class="empty-state">Theme toggle and font size slider will be added here later.</div>
-    </div>
-  `;
-}
 
 function renderKpiCard(label,value){
   return `
