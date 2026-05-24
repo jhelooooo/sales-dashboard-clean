@@ -1,5 +1,19 @@
-window.appState={
+window.appState = {
+
   user:null,
   profile:null,
-  sales:[]
+
+  sales:[],
+  filteredSales:[],
+
+  filters:{
+    fiscal_year:'ALL',
+    fiscal_month:'ALL',
+    sales_agent:'ALL'
+  },
+
+  activePage:'dashboard'
+
 };
+
+
