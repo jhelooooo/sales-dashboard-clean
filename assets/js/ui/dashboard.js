@@ -1,9 +1,12 @@
 const NAV_ITEMS = [
   { id:'dashboard', label:'Dashboard', roles:['admin','manager','agent'] },
-  { id:'sales', label:'Sales', roles:['admin','manager','agent'] },
-  { id:'targets', label:'Targets', roles:['admin','manager'] },
-  { id:'users', label:'Users', roles:['admin'] },
-  { id:'settings', label:'Settings', roles:['admin','manager','agent'] }
+  { id:'weekly-sales', label:'Weekly Sales', roles:['admin','manager','agent'] },
+  { id:'dealer-breakdown', label:'Dealer Breakdown', roles:['admin','manager','agent'] },
+  { id:'brand-items', label:'Brand Items', roles:['admin','manager','agent'] },
+  { id:'top-dealers', label:'Top Dealers', roles:['admin','manager','agent'] },
+  { id:'brand-performance', label:'Brand Performance', roles:['admin','manager','agent'] },
+  { id:'sales-trend', label:'Sales Trend', roles:['admin','manager','agent'] },
+  { id:'raw-data', label:'Raw Data', roles:['admin','manager','agent'] }
 ];
 
 function getUserRole(){
@@ -93,12 +96,63 @@ function renderTopbar(){
 function renderActivePage(){
   const page = getActivePage();
 
-  if(page === 'sales') return renderSalesPage();
-  if(page === 'targets') return renderTargetsPage();
-  if(page === 'users') return renderUsersPage();
-  if(page === 'settings') return renderSettingsPage();
+if(page === 'weekly-sales')
+  return renderPlaceholderPage(
+    'Weekly Sales'
+  );
+
+if(page === 'dealer-breakdown')
+  return renderPlaceholderPage(
+    'Dealer Breakdown'
+  );
+
+if(page === 'brand-items')
+  return renderPlaceholderPage(
+    'Brand Items'
+  );
+
+if(page === 'top-dealers')
+  return renderPlaceholderPage(
+    'Top Dealers'
+  );
+
+if(page === 'brand-performance')
+  return renderPlaceholderPage(
+    'Brand Performance'
+  );
+
+if(page === 'sales-trend')
+  return renderPlaceholderPage(
+    'Sales Trend'
+  );
+
+if(page === 'raw-data')
+  return renderSalesPage();
 
   return renderDashboardPage();
+}
+
+function renderPlaceholderPage(title){
+
+  return `
+    <div class="panel-card">
+
+      <div class="panel-header">
+
+        <h2>${title}</h2>
+
+      </div>
+
+      <div class="empty-state">
+
+        ${title} page is ready for
+        the next build phase.
+
+      </div>
+
+    </div>
+  `;
+
 }
 
 function renderDashboardPage(){
