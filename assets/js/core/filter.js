@@ -1,20 +1,49 @@
-window.appState = {
+function applyFilters(){
 
-  user:null,
-  profile:null,
+  let rows = [
+    ...appState.sales
+  ];
 
-  sales:[],
-  filteredSales:[],
+  const {
+    fiscal_year,
+    fiscal_month,
+    sales_agent
+  } = appState.filters;
 
-  filters:{
-    fiscal_year:'ALL',
-    fiscal_month:'ALL',
-    sales_agent:'ALL'
-  },
+  if(fiscal_year !== 'ALL'){
 
-  activePage:'dashboard'
+    rows = rows.filter(
+      row =>
+        String(
+          row.fiscal_year
+        ) === String(
+          fiscal_year
+        )
+    );
 
-};
+  }
 
+  if(fiscal_month !== 'ALL'){
 
-applyFilters()
+    rows = rows.filter(
+      row =>
+        row.fiscal_month ===
+        fiscal_month
+    );
+
+  }
+
+  if(sales_agent !== 'ALL'){
+
+    rows = rows.filter(
+      row =>
+        row.sales_agent ===
+        sales_agent
+    );
+
+  }
+
+  appState.filteredSales =
+    rows;
+
+}
