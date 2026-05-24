@@ -19,6 +19,8 @@ async function init(){
   appState.sales =
     await loadSales();
 
+  applyFilters();
+
   renderDashboard();
 
 }
