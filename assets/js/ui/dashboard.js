@@ -44,7 +44,82 @@ function renderDashboard(){
   `;
 
   bindDashboardEvents();
+  
+  populateFilters();
+  
 }
+
+function populateFilters(){
+
+  const yearSelect =
+    document.getElementById(
+      'yearFilter'
+    );
+
+  const monthSelect =
+    document.getElementById(
+      'monthFilter'
+    );
+
+  if(!yearSelect || !monthSelect){
+    return;
+  }
+
+  const years = [
+    ...new Set(
+      appState.sales.map(
+        row => row.fiscal_year
+      )
+    )
+  ].filter(Boolean).sort();
+
+  const months = [
+    ...new Set(
+      appState.sales.map(
+        row => row.fiscal_month
+      )
+    )
+  ].filter(Boolean);
+
+  yearSelect.innerHTML =
+    `
+      <option value="ALL">
+        All Years
+      </option>
+    `;
+
+  monthSelect.innerHTML =
+    `
+      <option value="ALL">
+        All Months
+      </option>
+    `;
+
+  years.forEach(year => {
+
+    yearSelect.innerHTML +=
+      `
+        <option value="${year}">
+          ${year}
+        </option>
+      `;
+
+  });
+
+  months.forEach(month => {
+
+    monthSelect.innerHTML +=
+      `
+        <option value="${month}">
+          ${month}
+        </option>
+      `;
+
+  });
+
+}
+
+
 
 function renderSidebar(){
   const name = appState.profile?.full_name || appState.user?.email || 'User';
@@ -307,6 +382,7 @@ function renderSimpleDealerList(rows){
 }
 
 function bindDashboardEvents(){
+
   document.querySelectorAll('.nav-btn').forEach(button => {
     button.addEventListener('click',() => setActivePage(button.dataset.page));
   });
@@ -314,4 +390,31 @@ function bindDashboardEvents(){
   document
     .getElementById('logoutBtn')
     ?.addEventListener('click',signOutUser);
+
+  document
+    .getElementById('yearFilter')
+    ?.addEventListener('change',(e)=>{
+
+      appState.filters.fiscal_year =
+        e.target.value;
+
+      applyFilters();
+
+      renderDashboard();
+
+    });
+
+  document
+    .getElementById('monthFilter')
+    ?.addEventListener('change',(e)=>{
+
+      appState.filters.fiscal_month =
+        e.target.value;
+
+      applyFilters();
+
+      renderDashboard();
+
+    });
+
 }
