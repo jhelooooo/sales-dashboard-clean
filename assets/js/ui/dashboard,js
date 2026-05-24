@@ -1,0 +1,52 @@
+function renderDashboard(){
+
+  document.getElementById('app').innerHTML = `
+    <div class="dashboard-layout">
+
+      <aside class="sidebar">
+
+        <h2>
+          ${appState.profile?.full_name || ''}
+        </h2>
+
+        <p>
+          ${appState.profile?.role || ''}
+        </p>
+
+        <button id="logoutBtn">
+          Logout
+        </button>
+
+      </aside>
+
+      <main class="main-content">
+
+        <h1>Dashboard</h1>
+
+        <div class="kpi-grid">
+
+          <div class="kpi-card">
+
+            <span>Total Records</span>
+
+            <h3>
+              ${appState.sales.length}
+            </h3>
+
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+  `;
+
+  document
+    .getElementById('logoutBtn')
+    .addEventListener(
+      'click',
+      signOutUser
+    );
+
+}
