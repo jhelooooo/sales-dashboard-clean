@@ -4,6 +4,7 @@ async function loadSales(){
     await supabaseClient
       .from('raw_sales')
       .select('*')
+      .range(0,100000)
       .order(
         'sale_date',
         { ascending:false }
