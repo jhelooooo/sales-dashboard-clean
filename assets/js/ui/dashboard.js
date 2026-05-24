@@ -156,8 +156,14 @@ function renderPlaceholderPage(title){
 }
 
 function renderDashboardPage(){
-  const sales = appState.sales || [];
-  const totalSales = sales.reduce((sum,row) => sum + Number(row.client_total_amount || row.total || 0),0);
+  const sales =
+  appState.filteredSales || [];
+  const totalSales =
+  sales.reduce(
+    (sum,row) =>
+      sum + Number(row.total || 0),
+    0
+  );
   const uniqueDealers = new Set(sales.map(row => String(row.dealer_name || '').trim()).filter(Boolean));
   const uniqueBrands = new Set(sales.map(row => String(row.brand || '').trim()).filter(Boolean));
 
@@ -190,7 +196,8 @@ function renderDashboardPage(){
 }
 
 function renderSalesPage(){
-  const sales = appState.sales || [];
+  const sales =
+  appState.filteredSales || [];
 
   return `
     <div class="panel-card">
@@ -276,7 +283,7 @@ function renderSalesTable(rows){
               <td>${row.brand || '-'}</td>
               <td>${row.order_name || '-'}</td>
               <td>${formatNumber(row.qty || 0)}</td>
-              <td>${formatMoney(row.client_total_amount || row.total || 0)}</td>
+              <td>${formatMoney(row.total || 0)}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -293,7 +300,8 @@ function renderSimpleDealerList(rows){
   const map = new Map();
   rows.forEach(row => {
     const dealer = row.dealer_name || 'No Dealer';
-    const sales = Number(row.client_total_amount || row.total || 0);
+    const sales =
+  Number(row.total || 0);
     map.set(dealer,(map.get(dealer) || 0) + sales);
   });
 
