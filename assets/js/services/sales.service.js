@@ -1,15 +1,37 @@
 async function loadSales(){
 
-  const result =
-    await supabaseClient
-      .from('raw_sales')
-      .select('*')
-      .range(0,100000)
-      .order(
-        'sale_date',
-        { ascending:false }
-      );
+  const pageSize = 1000;
+  let from = 0;
 
-  return result.data || [];
+  let allRows = [];
+
+  while(true){
+
+    const result =
+      await supabaseClient
+        .from('raw_sales')
+        .select('*')
+        .range(
+          from,
+          from + pageSize - 1
+        );
+
+    const rows =
+      result.data || [];
+
+    allRows = [
+      ...allRows,
+      ...rows
+    ];
+
+    if(rows.length < pageSize){
+      break;
+    }
+
+    from += pageSize;
+
+  }
+
+  return allRows;
 
 }
