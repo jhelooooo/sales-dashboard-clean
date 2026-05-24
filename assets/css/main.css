@@ -1,1 +1,99 @@
-body{font-family:Arial,sans-serif;background:#0f172a;color:#f8fafc;margin:0;min-height:100vh}*{box-sizing:border-box}.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.auth-card{width:100%;max-width:420px;background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px}.auth-form{display:flex;flex-direction:column;gap:14px}.auth-form input{height:48px;border:none;border-radius:12px;padding:0 14px;background:#1e293b;color:#fff}.auth-form button{height:48px;border:none;border-radius:12px;background:#2563eb;color:#fff;font-weight:700;cursor:pointer}.dashboard-layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}.sidebar{background:#111827;border-right:1px solid rgba(255,255,255,.08);padding:24px}.main-content{padding:24px}.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.kpi-card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#f8fafc;
+  color:#0f172a;
+  min-height:100vh;
+}
+
+.app-shell{
+  min-height:100vh;
+}
+
+.auth-wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.auth-card{
+  width:100%;
+  max-width:420px;
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+.auth-card h1{
+  margin-bottom:8px;
+  font-size:28px;
+}
+
+.auth-card p{
+  margin-bottom:24px;
+  color:#64748b;
+}
+
+.auth-form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.auth-form input{
+  height:48px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:0 14px;
+  background:#ffffff;
+  color:#0f172a;
+}
+
+.auth-form button{
+  height:48px;
+  border:none;
+  border-radius:12px;
+  background:#2563eb;
+  color:#ffffff;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.dashboard-layout{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  min-height:100vh;
+}
+
+.sidebar{
+  background:#ffffff;
+  border-right:1px solid #e2e8f0;
+  padding:24px;
+}
+
+.main-content{
+  padding:24px;
+}
+
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.kpi-card{
+  background:#ffffff;
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 4px 20px rgba(15,23,42,.04);
+}
